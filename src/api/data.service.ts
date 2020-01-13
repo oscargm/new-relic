@@ -1,10 +1,6 @@
 export const getData = () =>
-  fetch('./host-app-data.json')
-    .then(res => {
-      console.log(res);
-      return res.json();
-    })
-    .then(data => console.log(data))
+  fetch('./host-app-data.json').then(res => res.json())
+    .then(data => data)
     .catch(error => {
       console.error('Error:', error);
     });
