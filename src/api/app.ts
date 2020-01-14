@@ -1,10 +1,9 @@
-export class HostApp {
+export class App {
   name: string;
   contributors: string[];
   version: string;
   apdex: string;
   host: string[];
-
   constructor(
     name: string,
     contributors: string[],
@@ -17,9 +16,5 @@ export class HostApp {
     this.version = version;
     this.apdex = apdex;
     this.host = host;
-  }
-
-  render(index: number) {
-    return `<div id="app-${index}" class="host-app"><h4>${this.name}</div>`;
   }
 }

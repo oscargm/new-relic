@@ -1,26 +1,31 @@
 import { getData } from './api/data.service';
-import { HostApp } from './model/host-app';
-import { mapHostToVM } from './mappers';
+import { mapAppsToVM, mapHostsToVM } from './mappers';
+import { App, Host } from './model/index';
+import { renderHostElement, renderWrapper } from './utils/render';
 
-var data: HostApp[];
+var apps: App[];
+var hosts: Host[];
 
 async function init() {
-  await getData().then(hosts => {
-    data = mapHostToVM(hosts);
+  await getData().then(data => {
+    apps = mapAppsToVM(data);
+    hosts = mapHostsToVM(data);
   });
-  const topApps: HostApp[] = getTopApps(data);
-  renderTopApps(topApps);
+  renderWrapper();
+  renderHosts(hosts);
 }
 
-function getTopApps(data: HostApp[]): HostApp[] {
-  return data.sort((a, b) => (a.apdex > b.apdex ? 1 : -1)).slice(0, 24);
-}
-
-function renderTopApps(topApps: HostApp[]) {
+function renderHosts(hosts: Host[]) {
   const wrapperElement = document.createElement('div');
-  wrapperElement.className = 'top-apps-wrapper';
-  wrapperElement.innerHTML = topApps.map((app, i) => app.render(i)).join('');
-  document.body.appendChild(wrapperElement);
+  wrapperElement.className = 'top-hosts-wrapper';
+  let wrapperContent = '';
+  hosts.map((host, i) => {
+    const a = renderHostElement(host, i);
+    wrapperContent = wrapperContent + a;
+  });
+  wrapperElement.innerHTML = wrapperContent;
+
+  document.querySelector('#container').appendChild(wrapperElement);
 }
 
 init();
