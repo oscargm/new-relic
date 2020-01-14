@@ -1,7 +1,7 @@
 import { getData } from './api/data.service';
 import { mapAppsToVM, mapHostsToVM } from './mappers';
 import { App, Host } from './model/index';
-import { renderHostElement, renderWrapper } from './utils/render';
+import { renderHosts, renderWrapper } from './utils/render';
 
 var apps: App[];
 var hosts: Host[];
@@ -12,20 +12,23 @@ async function init() {
     hosts = mapHostsToVM(data);
   });
   renderWrapper();
-  renderHosts(hosts);
+
+  renderHosts(getBestHosts(hosts));
 }
 
-function renderHosts(hosts: Host[]) {
-  const wrapperElement = document.createElement('div');
-  wrapperElement.className = 'top-hosts-wrapper';
-  let wrapperContent = '';
-  hosts.map((host, i) => {
-    const a = renderHostElement(host, i);
-    wrapperContent = wrapperContent + a;
-  });
-  wrapperElement.innerHTML = wrapperContent;
+function addAppToHosts(app: App) {
+  hosts.forEach(host => host.addApp(app));
+}
 
-  document.querySelector('#container').appendChild(wrapperElement);
+function removeAppFromHosts(app: App) {
+  hosts.forEach(host => host.removeApp(app));
+}
+
+function getBestHosts(hosts: Host[]) {
+  hosts.sort((hostA, hostB) =>
+    hostA.getSumOfApdex() > hostB.getSumOfApdex() ? -1 : 1
+  );
+  return hosts;
 }
 
 init();

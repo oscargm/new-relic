@@ -1,18 +1,19 @@
 * {
     position: relative;
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
 }
 
 html, body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
     height: 100%;
     min-height: 100%;
     max-height: 100%;
     width: 100%;
     min-width: 100%;
     max-width: 100%;
-    overflow: hidden;
+    margin: 0;
+    padding: 0;
     background-color: #ccc;
 }
 
@@ -20,4 +21,41 @@ html, body {
     width: 100%;
     height: 100%;
     padding: 2rem;
+}
+
+.hosts-wrapper {
+    width: 840px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: auto;
+    background-color: white;
+}
+
+.card {
+    width: 375px;
+    padding: 30px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-title {
+    font-weight: bold;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.host-app {
+    padding: 1rem 0;
+    color: #4A4A4A;
+    line-height: 1.2rem;
+}
+
+.host-app>.apdex {
+    opacity: 62%;
+    font-weight: bold;
 }

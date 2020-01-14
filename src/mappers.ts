@@ -28,5 +28,6 @@ export const mapHostsToVM = (apps: APIApp[]): VMHost[] => {
     });
   });
   console.log(hosts);
+
   return hosts;
 };

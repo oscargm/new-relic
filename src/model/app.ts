@@ -24,12 +24,4 @@ export class App {
               <h4>${this.name}</h4>
             </div>`;
   }
-
-  renderHost(index: number, hostname: string) {
-    return `<div id="app-${index}" class="host">
-              <h4>${hostname}</h4>
-              <h2>
-              <ul>${this.host.map(h => `<li>${h}</li>`)}</ul>
-            </div>`;
-  }
 }
