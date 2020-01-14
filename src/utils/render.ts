@@ -17,6 +17,14 @@ export function renderWrapper() {
   document.body.appendChild(wrapperElement);
 }
 
+export function renderTitle() {
+  const wrapperElement = document.createElement('div');
+  wrapperElement.className = 'page-header';
+  wrapperElement.innerHTML = `<span class="title">Apps by host</span>
+                            <span class="subtitle">for user averylongemailaddress@companyname.com</span>`;
+  document.querySelector('#container').appendChild(wrapperElement);
+}
+
 export function renderApps(topApps: App[]) {
   const wrapperElement = document.createElement('div');
   wrapperElement.className = 'top-apps-wrapper';

@@ -5,6 +5,7 @@
 
 html, body {
     font-family: Arial, Helvetica, sans-serif;
+    background-color: white;
     font-size: 16px;
     height: 100%;
     min-height: 100%;
@@ -14,7 +15,7 @@ html, body {
     max-width: 100%;
     margin: 0;
     padding: 0;
-    background-color: #ccc;
+    line-height: 1.2rem;
 }
 
 .container {
@@ -29,10 +30,11 @@ html, body {
     justify-content: space-around;
     flex-wrap: wrap;
     margin: auto;
-    background-color: white;
+    background-color: #f5f5f5ff;
 }
 
 .card {
+    background-color: white;
     width: 375px;
     padding: 30px;
     border: 1px solid black;
@@ -52,10 +54,22 @@ html, body {
 .host-app {
     padding: 1rem 0;
     color: #4A4A4A;
-    line-height: 1.2rem;
 }
 
 .host-app>.apdex {
     opacity: 62%;
     font-weight: bold;
+}
+
+.page-header {
+    padding: 30px;
+}
+
+.page-header>.title {
+    font-weight: bold;
+    font-size: 35px;
+}
+
+.page-header>.subtitle {
+    font-size: 18px;
 }

@@ -1,7 +1,7 @@
 import { getData } from './api/data.service';
 import { mapAppsToVM, mapHostsToVM } from './mappers';
 import { App, Host } from './model/index';
-import { renderHosts, renderWrapper } from './utils/render';
+import { renderHosts, renderWrapper, renderTitle } from './utils/render';
 
 var apps: App[];
 var hosts: Host[];
@@ -12,7 +12,7 @@ async function init() {
     hosts = mapHostsToVM(data);
   });
   renderWrapper();
-
+  renderTitle();
   renderHosts(getBestHosts(hosts));
 }
 
