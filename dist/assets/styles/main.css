@@ -82,14 +82,38 @@ html, body {
 }
 
 .page-header {
+    display: flex;
     padding: 30px;
+    align-items: baseline;
 }
 
 .page-header>.title {
     font-weight: bold;
     font-size: 35px;
+    line-height: 1.2;
+    flex-basis: 250px;
 }
 
 .page-header>.subtitle {
+    display: flex;
     font-size: 18px;
+    line-height: 1.2;
+}
+
+.page-header>.subtitle>.username>span {
+    text-overflow: ellipsis;
+}
+
+.page-header>.subtitle>.spacer {
+    flex-basis: 30px;
+}
+
+.page-header>.subtitle>.username {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.subtitle>.list-card-check {
+    flex-basis: 154px;
 }

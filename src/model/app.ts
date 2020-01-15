@@ -17,11 +17,12 @@ export class App {
     host: string[]
   ) {
     this.name = name;
+    this.apdex = apdex;
     this.contributors = contributors;
     this.version = version;
-    this.apdex = apdex;
     this.host = host;
   }
+
   public get name(): string {
     return this._name;
   }
@@ -47,7 +48,6 @@ export class App {
   public get apdex(): string {
     return this._apdex;
   }
-
   public set apdex(value: string) {
     this._apdex = value;
   }
