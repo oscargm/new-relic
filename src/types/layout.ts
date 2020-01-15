@@ -1,6 +1,6 @@
 export enum LayoutTypes {
-  LIST,
-  GRID,
+  LIST = 'LIST',
+  GRID = 'GRID',
 }
 
 export type Layout = LayoutTypes;
