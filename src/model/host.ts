@@ -1,57 +1,51 @@
 import { App } from './app';
-import { isArray } from 'util';
 
 export class Host {
-  name: string;
-  apps: App[];
+  private _name: string;
+  private _apps: App[];
 
   constructor(name: string, apps: any[]) {
-    this.name = name;
-    this.apps = apps;
+    this._name = name;
+    this._apps = apps;
+  }
+
+  public get name(): string {
+    return this._name;
+  }
+
+  public set name(value: string) {
+    this._name = value;
+  }
+
+  public get apps(): App[] {
+    return this._apps;
+  }
+
+  public set apps(value: App[]) {
+    this._apps = value;
   }
 
   //  addApptoHost
-  addApp(app: App) {
-    this.apps.push(app);
-  }
-
-  //  getTopAppsByHost
-  getTopApps(): App[] {
-    return this.apps.sort((a, b) => (a.apdex > b.apdex ? -1 : 1)).slice(0, 24);
+  public addApp(app: App) {
+    this._apps.push(app);
   }
 
   //  removeAppFromHost
-  removeApp(appToDelete: App) {
-    this.apps.splice(
-      this.apps.findIndex(app => app.name === appToDelete.name),
+  public removeApp(appToDelete: App) {
+    this._apps.splice(
+      this._apps.findIndex(app => app.name === appToDelete.name),
       1
     );
   }
 
-  getSumOfApdex() {
-    return this.apps.reduce((sum, { apdex }) => {
-      return sum + parseInt(apdex);
-    }, 0);
+  //  getTopAppsByHost
+  public getTopApps(): App[] {
+    return this._apps.sort((a, b) => (a.apdex > b.apdex ? -1 : 1)).slice(0, 24);
   }
 
-  createCard(index: number): string {
-    return `<div id="host-${index}" class="card-wrapper">
-              <div class="card">
-                <div class="card-header">
-                  <span class="card-title">${this.name}</h2>
-                </div>
-                <div class="card-body">
-                  ${this.getTopApps()
-                    .slice(0, 5)
-                    .map(
-                      app => `<div class="host-app">
-                              <span class="apdex">${app.apdex}</span>
-                              <span class="name">${app.name}</span>
-                              </div>`
-                    )
-                    .join('')}
-                </div>
-              </div> 
-            </div>`;
+  public getSumOfApdex() {
+    return this._apps.reduce((sum, { apdex }) => {
+      return sum + parseInt(apdex, 10);
+    }, 0);
   }
 }

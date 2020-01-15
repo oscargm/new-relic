@@ -13,21 +13,31 @@ export const mapHostsToVM = (apps: APIApp[]): VMHost[] => {
     app.host.forEach(appHost => {
       const hostIndex = hosts.findIndex(host => host.name === appHost);
       if (hostIndex === -1) {
-        console.log('hola');
-        const hostApps: VMApp[] = [];
-        hostApps.push(mapAppToVM(app));
-        hosts.push(new VMHost(appHost, hostApps));
+        addHost(hosts, app, appHost);
       }
       if (
-        hostIndex &&
-        hosts[hostIndex] &&
-        !hosts[hostIndex].apps.find(hostApp => hostApp.name === app.name)
+        isHostFound(hosts, hostIndex, app) &&
+        !isAppFoundInHost(hosts, hostIndex, app)
       ) {
-        hosts[hostIndex].addApp(mapAppToVM(app));
+        addAppToHost(hosts, hostIndex, app);
       }
     });
   });
-  console.log(hosts);
 
   return hosts;
 };
+
+const addHost = (hosts: VMHost[], app: APIApp, appHost: string) => {
+  const hostApps: VMApp[] = [];
+  hostApps.push(mapAppToVM(app));
+  hosts.push(new VMHost(appHost, hostApps));
+};
+
+const isHostFound = (hosts: VMHost[], hostIndex: number, app: APIApp) =>
+  hostIndex && hosts[hostIndex];
+
+const isAppFoundInHost = (hosts: VMHost[], hostIndex: number, app: APIApp) =>
+  hosts[hostIndex].apps.find(hostApp => hostApp.name === app.name);
+
+const addAppToHost = (hosts: VMHost[], hostIndex: number, app: APIApp) =>
+  hosts[hostIndex].addApp(mapAppToVM(app));

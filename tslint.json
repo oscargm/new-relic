@@ -18,6 +18,14 @@
     "no-switch-case-fall-through": true,
     "no-unused-expression": true,
     "no-use-before-declare": false,
-    "quotemark": false
+    "quotemark": false,
+    "arrow-parens": [true, "ban-single-arg-parens"],
+    "variable-name": {
+      "options": [
+        "ban-keywords",
+        "check-format",
+        "allow-leading-underscore",
+        "allow-pascal-case"
+      ]
   }
 }

@@ -1,27 +1,27 @@
 import { getData } from './api/data.service';
 import { mapAppsToVM, mapHostsToVM } from './mappers';
 import { App, Host } from './model/index';
-import { renderHosts, renderWrapper, renderTitle } from './utils/render';
+import { renderCards, renderTitle, renderWrapper } from './utils/render';
 
-var apps: App[];
-var hosts: Host[];
+let storeApps: App[];
+let storeHosts: Host[];
 
 async function init() {
   await getData().then(data => {
-    apps = mapAppsToVM(data);
-    hosts = mapHostsToVM(data);
+    storeApps = mapAppsToVM(data);
+    storeHosts = mapHostsToVM(data);
   });
   renderWrapper();
   renderTitle();
-  renderHosts(getBestHosts(hosts));
+  renderCards(getBestHosts(storeHosts));
 }
 
 function addAppToHosts(app: App) {
-  hosts.forEach(host => host.addApp(app));
+  storeHosts.forEach(host => host.addApp(app));
 }
 
 function removeAppFromHosts(app: App) {
-  hosts.forEach(host => host.removeApp(app));
+  storeHosts.forEach(host => host.removeApp(app));
 }
 
 function getBestHosts(hosts: Host[]) {
