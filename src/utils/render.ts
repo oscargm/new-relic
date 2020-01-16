@@ -41,12 +41,12 @@ export const renderTitle = (layout: Layout, onChangeCallback) => {
 export const renderCards = (hosts: Host[]) => {
   const wrapperElement = document.createElement('div');
   wrapperElement.className = 'hosts-wrapper';
-  const content = hosts.map((host, i) => renderHostCard(host, i)).join('');
+  const content = hosts.map((host, i) => `${i%2 === 1? '<div style="width:30px"></div>': ''}${renderHostCard(host, i)}`).join('');
   wrapperElement.innerHTML = content;
   document.querySelector('.content').appendChild(wrapperElement);
 };
 
-const renderHostCard = (host: Host, index: number): string =>
+export const renderHostCard = (host: Host, index: number): string =>
   new Card(
     index,
     host.name,

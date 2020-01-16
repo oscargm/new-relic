@@ -3,17 +3,24 @@ import { mapHostsToVM } from './mappers';
 import { App, Host } from './model/index';
 import { Layout, LayoutTypes } from './types/layout';
 import { layoutUtils } from './utils/layout';
-import { renderCards, renderTitle, renderWrapper } from './utils/render';
+import { renderHostCard } from './utils/render';
+import Page from './components/page/page';
+import { updateCheckbox } from './utils/actions';
 
 // let storeApps: App[];
 let storeHosts: Host[];
-const initialLayout: Layout = LayoutTypes.GRID;
+let layout: Layout = LayoutTypes.GRID;
 
-async function init() {
+function init() {
   getData(data => {
     storeHosts = mapHostsToVM(data);
-    renderFunctions(initialLayout);
+    renderFunctions(layout);
+    document.querySelector('.checkmark').addEventListener('click',() =>{
+      updateCheckbox();
+      onChangeLayout()
+    })
   });
+ 
 }
 
 function addAppToHosts(app: App) {
@@ -32,17 +39,27 @@ function getBestHosts(hosts: Host[]) {
 }
 
 const renderFunctions = (layout: Layout) => {
-  renderWrapper();
-  renderTitle(layout, onChangeLayout);
-  renderCards(getBestHosts(storeHosts));
+  // renderWrapper();
+  // renderTitle(layout, onChangeLayout);
+  // renderCards(getBestHosts(storeHosts));
+  const content = `<div class="hosts-wrapper">
+                  ${getBestHosts(storeHosts).map((host, i) => 
+                    `${i%2 === 1? '<div style="width:30px"></div>': ''}
+                    ${renderHostCard(host, i)}`).join('')}
+                  </div>`;
+  document.body.innerHTML = new Page(layout, 'layoutChangeControl', content).render();
 };
 
-const onChangeLayout = event => {
-  changeLayoutCss(event.target.checked ? LayoutTypes.LIST : LayoutTypes.GRID);
+const onChangeLayout = () => {
+  const checkbox =   document.querySelector('.list-card-check > input') as HTMLInputElement;
+  changeLayoutCss(checkbox.checked ? LayoutTypes.LIST: LayoutTypes.GRID);
 };
 
-const changeLayoutCss = (layout: Layout) => {
-  layoutUtils[layout]();
+const changeLayoutCss = (newLayout:Layout) => {
+  layoutUtils[newLayout]();
 };
+
+
+window.addEventListener('resize', () => layoutUtils.makeAppResponsive(window.innerWidth));
 
 init();
