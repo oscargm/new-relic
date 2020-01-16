@@ -11,6 +11,9 @@
   "author": "oscar garcia masia",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.8.3",
+    "@babel/polyfill": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
     "@types/node": "^13.1.6",
     "prettier": "^1.19.1",
     "ts-loader": "^6.2.1",

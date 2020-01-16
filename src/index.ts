@@ -1,20 +1,19 @@
 import { getData } from './api/data.service';
-import { mapAppsToVM, mapHostsToVM } from './mappers';
+import { mapHostsToVM } from './mappers';
 import { App, Host } from './model/index';
-import { renderCards, renderTitle, renderWrapper } from './utils/render';
-import { LayoutTypes, Layout } from './types/layout';
+import { Layout, LayoutTypes } from './types/layout';
 import { layoutUtils } from './utils/layout';
+import { renderCards, renderTitle, renderWrapper } from './utils/render';
 
 // let storeApps: App[];
 let storeHosts: Host[];
-let layout: Layout = LayoutTypes.GRID;
+const initialLayout: Layout = LayoutTypes.GRID;
 
 async function init() {
-  await getData().then(data => {
-    // storeApps = mapAppsToVM(data);
+  getData(data => {
     storeHosts = mapHostsToVM(data);
+    renderFunctions(initialLayout);
   });
-  renderFunctions(layout);
 }
 
 function addAppToHosts(app: App) {
@@ -32,7 +31,7 @@ function getBestHosts(hosts: Host[]) {
   return hosts;
 }
 
-const renderFunctions = layout => {
+const renderFunctions = (layout: Layout) => {
   renderWrapper();
   renderTitle(layout, onChangeLayout);
   renderCards(getBestHosts(storeHosts));

@@ -27,5 +27,6 @@
         "allow-leading-underscore",
         "allow-pascal-case"
       ]
+    }
   }
 }

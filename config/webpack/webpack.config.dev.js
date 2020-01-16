@@ -3,28 +3,29 @@ const rootPath = path.resolve(__dirname, '../..');
 const resolveFromRootPath = (...args) => path.join(rootPath, ...args);
 
 module.exports = {
-  entry: resolveFromRootPath('src/index.ts'),
+  entry: ['@babel/polyfill', resolveFromRootPath('src/index.ts')],
   devtool: 'inline-source-map',
   mode: 'development',
   devServer: {
     contentBase: resolveFromRootPath('dist'),
     compress: true,
-    port: 9000
+    port: 9000,
+    disableHostCheck: true,
   },
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
+        test: /\.ts?$/,
         use: 'ts-loader',
-        exclude: /node_modules/
-      }
-    ]
+        exclude: /node_modules/,
+      },
+    ],
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.js']
+    extensions: ['.ts', '.js'],
   },
   output: {
     filename: 'bundle.js',
-    path: resolveFromRootPath('dist')
-  }
+    path: resolveFromRootPath('dist'),
+  },
 };
