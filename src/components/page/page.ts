@@ -6,8 +6,8 @@ export default class Page extends AbstractPage {
 
     private _content: string;
 
-    constructor(layout:Layout, checkboxId:string, content:string) {
-        super(layout, checkboxId);
+    constructor(layout:Layout, content:string) {
+        super(layout);
         this.content = content
     }
 
@@ -21,7 +21,7 @@ export default class Page extends AbstractPage {
     render() {
         return `<div id="container">
                     <div class="content">
-                        ${new Header(this.layout, this.checkboxId).render()}
+                        ${new Header(this.layout).render()}
                         ${this.content}
                     </div>
                 </div>`;

@@ -2,18 +2,9 @@ import { Layout} from "../../types/layout";
 
 export default class AbstractPage {
     private _layout: Layout;
-    private _checkboxId: string;
     
-    constructor(layout:Layout, checkboxId:string) {
+    constructor(layout:Layout) {
         this.layout=layout;
-        this.checkboxId = checkboxId;
-    }
-
-    public get checkboxId(): string {
-        return this._checkboxId;
-    }
-    public set checkboxId(value: string) {
-        this._checkboxId = value;
     }
 
     public get layout(): Layout {

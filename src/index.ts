@@ -39,15 +39,12 @@ function getBestHosts(hosts: Host[]) {
 }
 
 const renderFunctions = (layout: Layout) => {
-  // renderWrapper();
-  // renderTitle(layout, onChangeLayout);
-  // renderCards(getBestHosts(storeHosts));
   const content = `<div class="hosts-wrapper">
                   ${getBestHosts(storeHosts).map((host, i) => 
                     `${i%2 === 1? '<div style="width:30px"></div>': ''}
                     ${renderHostCard(host, i)}`).join('')}
                   </div>`;
-  document.body.innerHTML = new Page(layout, 'layoutChangeControl', content).render();
+  document.body.innerHTML = new Page(layout, content).render();
 };
 
 const onChangeLayout = () => {

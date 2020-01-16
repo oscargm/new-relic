@@ -6,7 +6,6 @@ import { updateCheckbox } from "./actions";
 */
 
 const convertToGrid = () => {
-  console.log('convertToGrid')
   const wrapper = document.querySelector('.hosts-wrapper');
   wrapper.classList.remove('list');
   const cards = document.querySelectorAll('.card');
@@ -18,7 +17,6 @@ const convertToGrid = () => {
 };
 
 const convertToList = () => {
-  console.log('convertToList')
   const wrapper = document.querySelector('.hosts-wrapper');
   wrapper.classList.add('list');
   const cards = document.querySelectorAll('.card');
