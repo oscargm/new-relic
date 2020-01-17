@@ -30,6 +30,12 @@ function removeAppFromHosts(app: App) {
   storeHosts.forEach(host => host.removeApp(app));
 }
 
+function getTopAppsByHost(hostname: string) {
+  storeHosts
+    .filter(host => host.name === hostname)
+    .map(host => host.getTopApps());
+}
+
 function getBestHosts(hosts: Host[]) {
   hosts.sort((hostA, hostB) =>
     hostA.getSumOfApdex() > hostB.getSumOfApdex() ? -1 : 1
