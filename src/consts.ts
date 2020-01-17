@@ -1,5 +1,5 @@
 export const labels = {
-    TITLE: 'Apps by host', 
-    CHECKBOX_GRID: 'Show as an awesome grid',
-    CHECKBOX_LIST: 'Show as list'
-}
+  CHECKBOX_GRID: 'Show as an awesome grid',
+  CHECKBOX_LIST: 'Show as list',
+  TITLE: 'Apps by host',
+};

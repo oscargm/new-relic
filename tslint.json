@@ -27,6 +27,7 @@
         "allow-leading-underscore",
         "allow-pascal-case"
       ]
-    }
+    },
+    "trailing-comma": [true, { "functions": "ignodre" }]
   }
 }

@@ -1,30 +1,28 @@
-import { Layout } from "../../types/layout";
-import AbstractPage from "./abstract-page";
-import Header from "./header";
+import { Layout } from '../../types/layout';
+import AbstractPage from './abstract-page';
+import Header from './header';
 
 export default class Page extends AbstractPage {
+  private _content: string;
 
-    private _content: string;
+  constructor(layout: Layout, content: string) {
+    super(layout);
+    this.content = content;
+  }
 
-    constructor(layout:Layout, content:string) {
-        super(layout);
-        this.content = content
-    }
+  public get content(): string {
+    return this._content;
+  }
+  public set content(value: string) {
+    this._content = value;
+  }
 
-    public get content(): string {
-        return this._content;
-    }
-    public set content(value: string) {
-        this._content = value;
-    }
-
-    render() {
-        return `<div id="container">
+  public render() {
+    return `<div id="container">
                     <div class="content">
                         ${new Header(this.layout).render()}
                         ${this.content}
                     </div>
                 </div>`;
-    }
-    
+  }
 }

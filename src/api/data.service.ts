@@ -1,4 +1,5 @@
 import { App } from './app';
+import { ENDPOINT } from './consts';
 
 /*
     I would use axios or fetch but due to the incompability with IE
@@ -19,10 +20,10 @@ import { App } from './app';
 */
 export const getData = (callback: (response: App[]) => void) => {
   const xhttp = new XMLHttpRequest();
-  xhttp.open('GET', './host-app-data.json', true);
+  xhttp.open('GET', ENDPOINT, true);
   xhttp.send();
   xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
+    if (this.readyState === 4 && this.status === 200) {
       callback(JSON.parse(xhttp.response));
     }
   };

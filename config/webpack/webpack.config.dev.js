@@ -1,6 +1,9 @@
+const webpack = require('webpack');
 const path = require('path');
 const rootPath = path.resolve(__dirname, '../..');
 const resolveFromRootPath = (...args) => path.join(rootPath, ...args);
+const BASE_URL = process.env.base_url || 'http://localhost:3000';
+const ENDPOINT = process.env.endpoint || `${BASE_URL}/hostapps`;
 
 module.exports = {
   entry: ['@babel/polyfill', resolveFromRootPath('src/index.ts')],
@@ -28,4 +31,7 @@ module.exports = {
     filename: 'bundle.js',
     path: resolveFromRootPath('dist'),
   },
+  plugins: [
+    new webpack.DefinePlugin({ __ENDPOINT__: JSON.stringify(ENDPOINT) }),
+  ],
 };

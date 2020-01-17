@@ -36,7 +36,6 @@ export default class Card {
                     </div>
                     <div class="card-body">
                         ${this.body}
-                          
                     </div>
                 </div>
             </div>`;
