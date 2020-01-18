@@ -1,6 +1,7 @@
 import { updateCheckbox } from './actions';
 
 /*
+  tslint:disable:prefer-for-of
   IE11 doesn't support nodelist.forEach()
   https://developer.mozilla.org/en-US/docs/Web/API/NodeList/forEach
 */

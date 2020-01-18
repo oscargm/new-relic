@@ -9,12 +9,12 @@ import { renderHostCard } from './utils/render';
 
 // let storeApps: App[];
 let storeHosts: Host[];
-const layout: Layout = LayoutTypes.GRID;
+const defaultLayout: Layout = LayoutTypes.GRID;
 
 function init() {
   getData(data => {
     storeHosts = mapHostsToVM(data);
-    renderFunctions(layout);
+    renderFunctions(defaultLayout);
     document.querySelector('.checkmark').addEventListener('click', () => {
       updateCheckbox();
       onChangeLayout();
@@ -49,10 +49,18 @@ const renderFunctions = (layout: Layout) => {
                     .map(
                       (host, i) =>
                         `${i % 2 === 1 ? '<div style="width:30px"></div>' : ''}
-                    ${renderHostCard(host, i)}`
+                        ${renderHostCard(host, i)}`
                     )
                     .join('')}
                   </div>`;
+  /*
+    Above condition:
+    ${i % 2 === 1 ? '<div style="width:30px"></div>' : ''}
+    is used to add an empty element (separator) before even elements
+    and copy flexbox justify-content: space-evenly behaviour
+    when rendered as list, this remains invisible as it has no height
+    could be done better but this was a fast and working solution
+  */
   document.body.innerHTML = new Page(layout, content).render();
 };
 
