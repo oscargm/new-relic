@@ -4,8 +4,17 @@ module.exports = {
     [
       '@babel/preset-env',
       {
-        useBuiltIns: 'entry',
+        targets: {
+          node: 'current',
+        },
       },
+      '@babel/preset-typescript',
     ],
   ],
+  env: {
+    test: {
+      presets: ['@babel/preset-typescript'],
+      plugins: ['@babel/plugin-proposal-class-properties'],
+    },
+  },
 };

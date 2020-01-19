@@ -1,5 +1,8 @@
 const webpack = require('webpack');
 const path = require('path');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+  .BundleAnalyzerPlugin;
+
 const rootPath = path.resolve(__dirname, '../..');
 const resolveFromRootPath = (...args) => path.join(rootPath, ...args);
 const ENDPOINT = process.env.endpoint || `./host-app-data.json`;
@@ -34,5 +37,6 @@ module.exports = {
   },
   plugins: [
     new webpack.DefinePlugin({ __ENDPOINT__: JSON.stringify(ENDPOINT) }),
+    new BundleAnalyzerPlugin(),
   ],
 };
