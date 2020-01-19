@@ -1,11 +1,9 @@
-import { getData } from './api/data.service';
-import Page from './components/page/page';
+import { getData } from 'api';
+import { Page } from 'components';
+import { App, Host } from 'model';
+import { Layout, LayoutTypes } from 'types';
 import { mapHostsToVM } from './mappers';
-import { App, Host } from './model/index';
-import { Layout, LayoutTypes } from './types/layout';
-import { updateCheckbox } from './utils/actions';
-import { layoutUtils } from './utils/layout';
-import { renderHostCard } from './utils/render';
+import { layoutUtils, renderHostCard, updateCheckbox } from './utils';
 
 // let storeApps: App[];
 let storeHosts: Host[];

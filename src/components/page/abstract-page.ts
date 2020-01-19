@@ -1,6 +1,6 @@
 import { Layout } from '../../types/layout';
 
-export default class AbstractPage {
+export class AbstractPage {
   private _layout: Layout;
 
   constructor(layout: Layout) {

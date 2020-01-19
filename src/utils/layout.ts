@@ -32,8 +32,11 @@ const changeText = (text: string) => {
   document.querySelector('.list-card-check > label').textContent = text;
 };
 
-const setStyleToElement = (elementName, styles) => {
-  const el = document.querySelector(elementName);
+const setStyleToElement = (
+  elementSelector: string,
+  styles: { width: string }
+) => {
+  const el = document.querySelector(elementSelector) as HTMLElement;
   for (const property in styles) {
     if (styles[property]) {
       el.style[property] = styles[property];
@@ -41,7 +44,7 @@ const setStyleToElement = (elementName, styles) => {
   }
 };
 
-const makeAppResponsive = width => {
+const makeAppResponsive = (width: number) => {
   const checkbox = document.querySelector(
     '.list-card-check > input'
   ) as HTMLInputElement;

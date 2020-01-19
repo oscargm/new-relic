@@ -1,10 +1,20 @@
 {
   "compilerOptions": {
     "outDir": "./dist/",
+    "moduleResolution": "node",
     "module": "es6",
     "target": "es5",
     "jsx": "react",
     "allowJs": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "baseUrl": "./src",
+    "paths": {
+      "components": ["/components/*"],
+      "api": ["/api/*"],
+      "model": ["/model/*"],
+      "mock": ["/mock/*"],
+      "types": ["/types/*"],
+      "utils": ["/utils/*"],
+    }
   }
 }

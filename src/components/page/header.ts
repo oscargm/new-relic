@@ -1,8 +1,9 @@
 import { labels } from '../../consts';
 import { Layout, LayoutTypes } from '../../types/layout';
-import AbstractPage from './abstract-page';
+import { Checkbox } from '../checkbox';
+import { AbstractPage } from './abstract-page';
 
-export default class Header extends AbstractPage {
+export class Header extends AbstractPage {
   constructor(layout: Layout) {
     super(layout);
   }
@@ -16,18 +17,13 @@ export default class Header extends AbstractPage {
                             <span>for user averylongemailaddress@companyname.com</span>
                         </div>
                     </div>
-                    <div class="list-card-check">
-                        <label>${
-                          this.layout === LayoutTypes.LIST
-                            ? labels.CHECKBOX_GRID
-                            : labels.CHECKBOX_LIST
-                        }
-                        </label>
-                        <input type="checkbox" ${
-                          this.layout === LayoutTypes.LIST ? `checked` : ``
-                        }>
-                        <span class="checkmark"></span>
-                    </div>
+                    ${new Checkbox(
+                      this.layout === LayoutTypes.LIST
+                        ? labels.CHECKBOX_GRID
+                        : labels.CHECKBOX_LIST,
+                      this.layout === LayoutTypes.LIST ? true : false,
+                      'list-card-check'
+                    ).render()}
                 </div>`;
   }
 }

@@ -1,8 +1,8 @@
 import { Layout } from '../../types/layout';
-import AbstractPage from './abstract-page';
-import Header from './header';
+import { AbstractPage } from './abstract-page';
+import { Header } from './header';
 
-export default class Page extends AbstractPage {
+export class Page extends AbstractPage {
   private _content: string;
 
   constructor(layout: Layout, content: string) {

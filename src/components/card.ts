@@ -1,4 +1,4 @@
-export default class Card {
+export class Card {
   private _index: number;
   private _title: string;
   private _body: string;

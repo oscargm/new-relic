@@ -1,5 +1,5 @@
-import { App as APIApp } from './api/app';
-import { App as VMApp, Host as VMHost } from './model/index';
+import { App as APIApp } from 'api';
+import { App as VMApp, Host as VMHost } from 'model';
 
 export const mapAppsToVM = (apps: APIApp[]): VMApp[] =>
   apps.map(app => mapAppToVM(app));
@@ -16,7 +16,7 @@ export const mapHostsToVM = (apps: APIApp[]): VMHost[] => {
         addHost(hosts, app, appHost);
       }
       if (
-        isHostFound(hosts, hostIndex, app) &&
+        isHostFound(hosts, hostIndex) &&
         !isAppFoundInHost(hosts, hostIndex, app)
       ) {
         addAppToHost(hosts, hostIndex, app);
@@ -33,11 +33,14 @@ const addHost = (hosts: VMHost[], app: APIApp, appHost: string) => {
   hosts.push(new VMHost(appHost, hostApps));
 };
 
-const isHostFound = (hosts: VMHost[], hostIndex: number, app: APIApp) =>
+const isHostFound = (hosts: VMHost[], hostIndex: number): VMHost =>
   hostIndex && hosts[hostIndex];
 
-const isAppFoundInHost = (hosts: VMHost[], hostIndex: number, app: APIApp) =>
-  hosts[hostIndex].apps.find(hostApp => hostApp.name === app.name);
+const isAppFoundInHost = (
+  hosts: VMHost[],
+  hostIndex: number,
+  app: APIApp
+): VMApp => hosts[hostIndex].apps.find(hostApp => hostApp.name === app.name);
 
 const addAppToHost = (hosts: VMHost[], hostIndex: number, app: APIApp) =>
   hosts[hostIndex].addApp(mapAppToVM(app));
