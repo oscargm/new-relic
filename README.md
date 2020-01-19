@@ -32,3 +32,11 @@ Due to IE support a `justify-content: space-evenly` can't be used, so I added ex
 ## No dependices challenge
 
 To perform http requests I would usually use fetch (with a [polyfill](https://github.com/github/fetch)) or axios (as a dependence to include on the bundle), but due to the dependency limitation, I used the old XMLHttpRequest because of Internet Explorer. A performance fall has been noticed but it worked so I left for one of the lasts things to worry.
+
+## Testing
+
+Jest has been added to the project and a [test sample](./src/mappers.spec.ts) has been done.
+Next thing should be:
+
+- Cover all the logic with tests
+- Unit testing of the components rendering them with enzyme or integration test with cypress
