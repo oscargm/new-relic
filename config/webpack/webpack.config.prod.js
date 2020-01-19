@@ -17,7 +17,16 @@ module.exports = {
     ],
   },
   resolve: {
+    mainFiles: ['index'],
     extensions: ['.ts', '.js'],
+    alias: {
+      '@components': path.resolve(resolveFromRootPath('src/components')),
+      '@api': resolveFromRootPath('src/api'),
+      '@model': resolveFromRootPath('src/model'),
+      '@mock': resolveFromRootPath('src/mock'),
+      '@types': resolveFromRootPath('src/types'),
+      '@utils': path.resolve(resolveFromRootPath('src/utils')),
+    },
   },
   output: {
     filename: 'bundle.js',

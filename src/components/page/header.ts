@@ -1,5 +1,5 @@
 import { labels } from '../../consts';
-import { Layout, LayoutTypes } from '../../types/layout';
+import { Layout, LayoutTypes } from '@types';
 import { Checkbox } from '../checkbox';
 import { AbstractPage } from './abstract-page';
 

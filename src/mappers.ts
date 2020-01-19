@@ -1,5 +1,5 @@
-import { App as APIApp } from 'api';
-import { App as VMApp, Host as VMHost } from 'model';
+import { App as APIApp } from '@api';
+import { App as VMApp, Host as VMHost } from '@model';
 
 export const mapAppsToVM = (apps: APIApp[]): VMApp[] =>
   apps.map(app => mapAppToVM(app));

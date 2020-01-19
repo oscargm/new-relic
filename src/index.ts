@@ -1,7 +1,7 @@
-import { getData } from 'api';
-import { Page } from 'components';
-import { App, Host } from 'model';
-import { Layout, LayoutTypes } from 'types';
+import { getData } from '@api';
+import { Page } from '@components';
+import { App, Host } from '@model';
+import { Layout, LayoutTypes } from '@types';
 import { mapHostsToVM } from './mappers';
 import { layoutUtils, renderHostCard, updateCheckbox } from './utils';
 

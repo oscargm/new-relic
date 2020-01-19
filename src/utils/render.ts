@@ -1,6 +1,5 @@
-import { Card } from 'components';
-import { ListItem } from 'components';
-import { Host } from 'model';
+import { Card, ListItem } from '@components';
+import { Host } from '@model';
 
 export const renderHostCard = (host: Host, index: number): string =>
   new Card(

@@ -16,23 +16,25 @@ module.exports = {
     disableHostCheck: true,
   },
   module: {
-    rules: [{
-      test: /\.ts?$/,
-      use: 'ts-loader',
-      exclude: /node_modules/,
-    }, ],
+    rules: [
+      {
+        test: /\.ts?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
+    ],
   },
   resolve: {
     mainFiles: ['index'],
     extensions: ['.ts', '.js'],
     alias: {
-      components: path.resolve(resolveFromRootPath('src/components')),
-      api: resolveFromRootPath('src/api'),
-      model: resolveFromRootPath('src/model'),
-      mock: resolveFromRootPath('src/mock'),
-      types: resolveFromRootPath('src/types'),
-      utils: path.resolve(resolveFromRootPath('src/utils')),
-    }
+      '@components': path.resolve(resolveFromRootPath('src/components')),
+      '@api': resolveFromRootPath('src/api'),
+      '@model': resolveFromRootPath('src/model'),
+      '@mock': resolveFromRootPath('src/mock'),
+      '@types': resolveFromRootPath('src/types'),
+      '@utils': path.resolve(resolveFromRootPath('src/utils')),
+    },
   },
   output: {
     filename: 'bundle.js',
@@ -40,7 +42,7 @@ module.exports = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      __ENDPOINT__: JSON.stringify(ENDPOINT)
+      __ENDPOINT__: JSON.stringify(ENDPOINT),
     }),
   ],
 };

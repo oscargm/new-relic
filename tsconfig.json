@@ -2,19 +2,23 @@
   "compilerOptions": {
     "outDir": "./dist/",
     "moduleResolution": "node",
-    "module": "es6",
+    "module": "commonjs",
     "target": "es5",
     "jsx": "react",
     "allowJs": true,
     "sourceMap": true,
-    "baseUrl": "./src",
+    "declaration": false,
+    "noLib": false,
+    "baseUrl": ".",
     "paths": {
-      "components": ["/components/*"],
-      "api": ["/api/*"],
-      "model": ["/model/*"],
-      "mock": ["/mock/*"],
-      "types": ["/types/*"],
-      "utils": ["/utils/*"],
-    }
-  }
+      "@components": ["src/components"],
+      "@api": ["src/api"],
+      "@model": ["src/model"],
+      "@mock": ["src/mock"],
+      "@types": ["src/types"],
+      "@utils": ["src/utils"]
+    },
+    "suppressImplicitAnyIndexErrors": true
+  },
+  "exclude": ["node_modules"]
 }
